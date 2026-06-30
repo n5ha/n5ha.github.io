@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neha Mary Thomas — Cloud & DevOps Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0a0a0f;
+  --bg-2:      #111118;
+  --bg-3:      #16161f;
+  --bg-card:   #13131a;
+  --border:    rgba(255,255,255,0.07);
+  --border-hi: rgba(255,255,255,0.13);
+  --text:      #f0eee8;
+  --text-soft: #9896a0;
+  --text-muted:#55545e;
+  --cyan:      #4fc3b8;
+  --cyan-dim:  rgba(79,195,184,0.12);
+  --cyan-glow: rgba(79,195,184,0.25);
+  --violet:    #8b7cf8;
+  --violet-dim:rgba(139,124,248,0.1);
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-hi); border-radius: 2px; }
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(10,10,15,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  height: 60px;
+}
+
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--cyan);
+  letter-spacing: 0.04em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--cyan); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 100px 3rem 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.hero-bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(79,195,184,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79,195,184,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 680px; }
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border: 1px solid var(--cyan-dim);
+  background: var(--cyan-dim);
+  padding: 5px 14px;
+  border-radius: 2px;
+  margin-bottom: 2rem;
+}
+
+.hero-tag::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hero h1 {
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.hero h1 .name-accent { color: var(--cyan); }
+
+.hero-subtitle {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--violet);
+  letter-spacing: 0.06em;
+  margin-bottom: 1.75rem;
+}
+
+.hero-bio {
+  font-size: 17px;
+  color: var(--text-soft);
+  line-height: 1.75;
+  max-width: 560px;
+  margin-bottom: 2.5rem;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 24px;
+  border-radius: 3px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--cyan);
+  color: #0a0a0f;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background: #6dd4ca;
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-soft);
+  border: 1px solid var(--border-hi);
+}
+
+.btn-ghost:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  transform: translateY(-1px);
+}
+
+/* HERO STATS */
+.hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.stat { }
+
+.stat-num {
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text);
+  display: block;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+/* SECTIONS */
+.section-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 6rem 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.section-wrap + .section-wrap {
+  border-top: 1px solid var(--border);
+}
+
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 3rem;
+}
+
+/* SKILLS */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.skill-group {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  transition: background 0.2s;
+}
+
+.skill-group:hover { background: var(--bg-3); }
+
+.skill-group-title {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 3px 10px;
+  border: 1px solid var(--border-hi);
+  border-radius: 2px;
+  color: var(--text-soft);
+  background: var(--bg-2);
+  transition: all 0.15s;
+}
+
+.tag:hover { border-color: var(--cyan); color: var(--cyan); }
+
+/* PROJECTS */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.project-card {
+  background: var(--bg-card);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: background 0.2s;
+  position: relative;
+}
+
+.project-card:hover { background: var(--bg-3); }
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background 0.2s;
+}
+
+.project-card:hover::before { background: var(--cyan); }
+
+.project-card.featured { grid-column: span 2; }
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.project-type {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.project-link-icon {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--cyan);
+  text-decoration: none;
+  border: 1px solid var(--cyan-dim);
+  padding: 4px 10px;
+  border-radius: 2px;
+  white-space: nowrap;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.project-link-icon:hover { background: var(--cyan-dim); }
+
+.project-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.project-desc {
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.65;
+  flex: 1;
+}
+
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: auto;
+}
+
+.stack-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  border: 1px solid rgba(79,195,184,0.2);
+}
+
+.no-link-badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+/* EXPERIENCE */
+.exp-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.exp-item {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 3rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.exp-item:last-child { border-bottom: none; }
+
+.exp-meta { padding-top: 2px; }
+
+.exp-period {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--cyan);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+}
+
+.exp-org {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.exp-org-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.exp-type-badge {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 2px;
+  background: var(--violet-dim);
+  color: var(--violet);
+  border: 1px solid rgba(139,124,248,0.2);
+}
+
+.exp-role {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.exp-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.exp-bullets li {
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.6;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.exp-bullets li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--cyan);
+  font-size: 11px;
+  top: 4px;
+}
+
+/* EDUCATION */
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.edu-card {
+  background: var(--bg-card);
+  padding: 2rem;
+}
+
+.edu-period {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.edu-degree {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+
+.edu-school {
+  font-size: 13px;
+  color: var(--text-soft);
+  margin-bottom: 1.25rem;
+}
+
+.edu-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.edu-badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+}
+
+.edu-badge.gold {
+  background: rgba(234,168,0,0.1);
+  color: #eaa800;
+  border: 1px solid rgba(234,168,0,0.2);
+}
+
+.edu-badge.teal {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  border: 1px solid rgba(79,195,184,0.2);
+}
+
+.edu-badge.violet {
+  background: var(--violet-dim);
+  color: var(--violet);
+  border: 1px solid rgba(139,124,248,0.2);
+}
+
+/* CERTIFICATIONS */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cert-card {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  transition: background 0.2s;
+}
+
+.cert-card:hover { background: var(--bg-3); }
+
+.cert-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.cert-icon.aws { background: rgba(255,153,0,0.12); color: #ff9900; border: 1px solid rgba(255,153,0,0.2); }
+.cert-icon.gcp { background: rgba(66,133,244,0.12); color: #4285f4; border: 1px solid rgba(66,133,244,0.2); }
+.cert-icon.intel { background: rgba(0,113,197,0.12); color: #0071c5; border: 1px solid rgba(0,113,197,0.2); }
+.cert-icon.infosys { background: var(--violet-dim); color: var(--violet); border: 1px solid rgba(139,124,248,0.2); }
+.cert-icon.other { background: var(--cyan-dim); color: var(--cyan); border: 1px solid rgba(79,195,184,0.2); }
+
+.cert-info { flex: 1; }
+
+.cert-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 3px;
+  line-height: 1.3;
+}
+
+.cert-issuer {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.cert-date {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--cyan);
+}
+
+/* CONTACT */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.contact-headline {
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.contact-headline span { color: var(--cyan); }
+
+.contact-sub {
+  font-size: 15px;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-card);
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.contact-item:hover { background: var(--bg-3); }
+
+.contact-item-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  background: var(--cyan-dim);
+  border: 1px solid rgba(79,195,184,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--cyan);
+  flex-shrink: 0;
+}
+
+.contact-item-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.contact-item-val {
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 1.5rem 60px; }
+  .section-wrap { padding: 4rem 1.5rem; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .project-card.featured { grid-column: span 1; }
+  .exp-item { grid-template-columns: 1fr; gap: 1rem; }
+  .edu-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero-bg-grid"></div>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">neha.dev</span>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Available for opportunities</div>
+    <h1>Neha<br>Mary Thomas</h1>
+    <p class="hero-subtitle">// Cloud & DevOps Engineer · Kerala, India</p>
+    <p class="hero-bio">
+      Computer Science graduate specialising in cloud infrastructure, DevOps automation, and containerised systems. I build reliable, automated pipelines — from bare EC2 instances to production-grade Ansible-orchestrated deployments.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View my work</a>
+      <a href="mailto:nehamary22@gmail.com" class="btn btn-ghost">Get in touch</a>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="section-wrap" id="skills">
+  <p class="section-eyebrow">Technical skills</p>
+  <h2 class="section-title">What I work with</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <p class="skill-group-title">Cloud — AWS</p>
+      <div class="skill-tags">
+        <span class="tag">EC2</span>
+        <span class="tag">S3</span>
+        <span class="tag">IAM</span>
+        <span class="tag">Auto Scaling</span>
+        <span class="tag">Security Groups</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">IaC & Automation</p>
+      <div class="skill-tags">
+        <span class="tag">Ansible</span>
+        <span class="tag">Terraform</span>
+        <span class="tag">Shell scripting</span>
+        <span class="tag">Bash</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Containers</p>
+      <div class="skill-tags">
+        <span class="tag">Docker</span>
+        <span class="tag">Docker Compose</span>
+        <span class="tag">Nginx</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">CI/CD & Version Control</p>
+      <div class="skill-tags">
+        <span class="tag">Jenkins</span>
+        <span class="tag">GitHub Actions</span>
+        <span class="tag">Git</span>
+        <span class="tag">GitHub</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Operating Systems</p>
+      <div class="skill-tags">
+        <span class="tag">RHEL</span>
+        <span class="tag">Ubuntu</span>
+        <span class="tag">CentOS</span>
+        <span class="tag">Amazon Linux 2</span>
+        <span class="tag">Linux Admin</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Languages & Databases</p>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Java</span>
+        <span class="tag">PHP</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">MariaDB</span>
+        <span class="tag">NoSQL</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="section-wrap" id="projects">
+  <p class="section-eyebrow">Selected projects</p>
+  <h2 class="section-title">Things I've built</h2>
+  <div class="projects-grid">
+
+    <!-- Featured -->
+    <div class="project-card featured">
+      <div class="project-header">
+        <span class="project-type">DevOps · Infrastructure Automation</span>
+        <a href="https://github.com/n5ha/Wordpress-Project-Using-Ansible" target="_blank" class="project-link-icon">GitHub ↗</a>
+      </div>
+      <p class="project-title">WordPress Hosting Automation Using Ansible on AWS</p>
+      <p class="project-desc">Provisioned a production-grade LEMP stack on AWS EC2 fully automated via Ansible playbooks — from server bootstrap to SSL certificate issuance via Certbot. Configured Nginx as a reverse proxy, secured MariaDB, set up phpMyAdmin and SFTP access, and pointed custom DNS to the live server. Zero manual configuration after the playbook runs.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Ansible</span>
+        <span class="stack-tag">AWS EC2</span>
+        <span class="stack-tag">Nginx</span>
+        <span class="stack-tag">MariaDB</span>
+        <span class="stack-tag">Certbot / SSL</span>
+        <span class="stack-tag">WordPress</span>
+        <span class="stack-tag">phpMyAdmin</span>
+        <span class="stack-tag">SFTP</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-type">DevOps · AWS</span>
+        <a href="https://github.com/n5ha/devops-ansible-aws-automation" target="_blank" class="project-link-icon">GitHub ↗</a>
+      </div>
+      <p class="project-title">DevOps Ansible Automation Project</p>
+      <p class="project-desc">End-to-end DevOps automation covering AWS resource provisioning, Ansible-driven server configuration, Docker deployments, and Jenkins CI/CD pipeline setup. Covers the full infrastructure lifecycle from instance launch to application delivery.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Ansible</span>
+        <span class="stack-tag">AWS</span>
+        <span class="stack-tag">Docker</span>
+        <span class="stack-tag">Jenkins</span>
+        <span class="stack-tag">Linux</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-type">Deep Learning · Healthcare</span>
+        <span class="no-link-badge">Academic project</span>
+      </div>
+      <p class="project-title">Medical Image Segmentation & Encryption</p>
+      <p class="project-desc">Built an end-to-end secure medical imaging pipeline achieving 97% Dice Coefficient accuracy, reducing radiologist pixel-labeling time by 70%. Engineered dual-layer SHA-256 encryption ensuring 100% HIPAA-compliant DICOM transmission, with inference optimised to under 200ms per image.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Deep Learning</span>
+        <span class="stack-tag">OpenCV</span>
+        <span class="stack-tag">SHA-256</span>
+        <span class="stack-tag">DICOM</span>
+        <span class="stack-tag">HIPAA</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-type">Full Stack · Web App</span>
+        <span class="no-link-badge">Academic project</span>
+      </div>
+      <p class="project-title">College Mess Management System</p>
+      <p class="project-desc">Digitised cafeteria operations for 500+ users — relational DB handled 1,500+ monthly transactions with 99.9% integrity. Automated monthly PDF reporting cut admin workload by 40%, and a feedback module drove a 15% improvement in satisfaction scores.</p>
+      <div class="project-stack">
+        <span class="stack-tag">PHP</span>
+        <span class="stack-tag">MySQL</span>
+        <span class="stack-tag">HTML/CSS</span>
+        <span class="stack-tag">JavaScript</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-type">NLP · Python</span>
+        <a href="https://github.com/n5ha/Next-Word-Prediction" target="_blank" class="project-link-icon">GitHub ↗</a>
+      </div>
+      <p class="project-title">Next Word Prediction Text Editor</p>
+      <p class="project-desc">Intelligent text editor with real-time next-word prediction using an N-gram language model. Suggests the most probable next word as the user types — lightweight, offline-capable, and built from scratch without external ML libraries.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">NLTK</span>
+        <span class="stack-tag">N-gram Model</span>
+        <span class="stack-tag">Tkinter</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-type">Python · Security</span>
+        <a href="https://github.com/n5ha/Password_Manager" target="_blank" class="project-link-icon">GitHub ↗</a>
+      </div>
+      <p class="project-title">Password Manager</p>
+      <p class="project-desc">A local password manager application with secure credential storage, password generation, and retrieval. Built with Python and a GUI interface — demonstrates practical security thinking and clean application design.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Tkinter</span>
+        <span class="stack-tag">JSON</span>
+        <span class="stack-tag">Cryptography</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section-wrap" id="experience">
+  <p class="section-eyebrow">Experience</p>
+  <h2 class="section-title">Where I've worked</h2>
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="exp-period">Feb 2026 — Present</p>
+        <p class="exp-org">IPSR Solutions Ltd</p>
+        <p class="exp-org-sub">Kottayam, Kerala · On-site</p>
+        <span class="exp-type-badge">Internship</span>
+      </div>
+      <div>
+        <p class="exp-role">Cloud & DevOps Intern</p>
+        <ul class="exp-bullets">
+          <li>Provisioned and managed AWS cloud resources including EC2, IAM, Security Groups, and networking using both the AWS Console and CLI.</li>
+          <li>Automated Linux server configuration and application deployment using Ansible playbooks, reducing repetitive manual configuration tasks.</li>
+          <li>Deployed containerised applications using Docker, Docker Compose, and Nginx on Linux servers.</li>
+          <li>Designed and implemented a highly available web application architecture using AWS Application Load Balancer and Auto Scaling.</li>
+          <li>Configured WordPress hosting with Nginx, MariaDB, phpMyAdmin, SFTP, and SSL certificates through Ansible automation.</li>
+          <li>Performed Linux system administration — package management, service configuration, user management, and troubleshooting on RHEL and Ubuntu.</li>
+          <li>Managed Git repositories using feature branches, pull requests, and collaborative version control workflows.</li>
+          <li>Documented deployment procedures and infrastructure configurations to improve project maintainability.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="exp-period">Feb 2024 — Apr 2025</p>
+        <p class="exp-org">MuLearn LMC</p>
+        <p class="exp-org-sub">Lourdes Matha College of S&T</p>
+        <span class="exp-type-badge">Leadership</span>
+      </div>
+      <div>
+        <p class="exp-role">Student Lead</p>
+        <ul class="exp-bullets">
+          <li>Led and coordinated student engagement initiatives as the MuLearn Student Lead for the campus community.</li>
+          <li>Encouraged students to participate in technical learning programs, hackathons, workshops, and skill-development activities.</li>
+          <li>Helped organise learning sessions and collaborated with peers to promote continuous learning and career development.</li>
+          <li>Strengthened leadership, communication, mentoring, and community-building skills while fostering an active learning culture.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="exp-period">Jan 2022 — Apr 2025</p>
+        <p class="exp-org">ISTE Student Chapter LMCST</p>
+        <p class="exp-org-sub">Lourdes Matha College of S&T</p>
+        <span class="exp-type-badge">Membership</span>
+      </div>
+      <div>
+        <p class="exp-role">ISTE Member</p>
+        <ul class="exp-bullets">
+          <li>Actively participated in technical events, workshops, seminars, and student development initiatives organised by the ISTE Student Chapter.</li>
+          <li>Collaborated with fellow members to promote technical learning and increase student participation in chapter activities.</li>
+          <li>Contributed to organising academic and extracurricular events that encouraged innovation, teamwork, and professional development.</li>
+          <li>Developed collaboration, communication, event coordination, and leadership skills through active involvement.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<div class="section-wrap" id="education">
+  <p class="section-eyebrow">Education</p>
+  <h2 class="section-title">Academic background</h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <p class="edu-period">2021 — 2025</p>
+      <p class="edu-degree">BTech Computer Science & Engineering</p>
+      <p class="edu-school">Lourdes Matha College of Science & Technology, Kerala<br>APJ Abdul Kalam Technological University</p>
+      <div class="edu-badges">
+        <span class="edu-badge gold">★ CGPA 8.14 — First Class with Distinction</span>
+        <span class="edu-badge gold">🏆 Department Topper</span>
+        <span class="edu-badge teal">Rakesh U N Memorial Trophy — CSE Excellence</span>
+        <span class="edu-badge violet">KSUM IDEAFEST 2023 — ₹60,000 Startup Grant</span>
+      </div>
+    </div>
+    <div class="edu-card">
+      <p class="edu-period">Higher Secondary · 2019 — 2021</p>
+      <p class="edu-degree">Higher Secondary Education — Biology Science</p>
+      <p class="edu-school">St. Joseph's GHSS, Changanacherry</p>
+      <div class="edu-badges">
+        <span class="edu-badge gold">97.25% — State Board</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<div class="section-wrap" id="certifications">
+  <p class="section-eyebrow">Certifications</p>
+  <h2 class="section-title">Credentials</h2>
+  <div class="certs-grid">
+
+    <div class="cert-card">
+      <div class="cert-icon aws">AWS</div>
+      <div class="cert-info">
+        <p class="cert-name">AWS Training Certificate</p>
+        <p class="cert-issuer">IPSR Solutions Ltd</p>
+        <p class="cert-date">Issued Jun 2026</p>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon gcp">GCP</div>
+      <div class="cert-info">
+        <p class="cert-name">Developing a Google SRE Culture</p>
+        <p class="cert-issuer">Google Cloud Training Online</p>
+        <p class="cert-date">Issued Feb 2026</p>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon gcp">GCP</div>
+      <div class="cert-info">
+        <p class="cert-name">Google Cloud Fundamentals: Core Infrastructure</p>
+        <p class="cert-issuer">Google Cloud Training Online</p>
+        <p class="cert-date">Issued Feb 2026</p>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon intel">AI</div>
+      <div class="cert-info">
+        <p class="cert-name">AI Appreciate Badge — AI For All</p>
+        <p class="cert-issuer">Intel</p>
+        <p class="cert-date">Issued Jan 2026</p>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon intel">AI</div>
+      <div class="cert-info">
+        <p class="cert-name">AI Aware Badge — AI For All</p>
+        <p class="cert-issuer">Intel</p>
+        <p class="cert-date">Issued Jan 2026</p>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon infosys">INF</div>
+      <div class="cert-info">
+        <p class="cert-name">Certified AI Foundation</p>
+        <p class="cert-issuer">Infosys Springboard</p>
+        <p class="cert-date">Issued Oct 2023</p>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon other">L&T</div>
+      <div class="cert-info">
+        <p class="cert-name">Data Management and Machine Learning</p>
+        <p class="cert-issuer">L&T EduTech · ASAP Kerala</p>
+        <p class="cert-date">Issued Jun 2023</p>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon other">CV</div>
+      <div class="cert-info">
+        <p class="cert-name">Internship on AI and Computer Vision</p>
+        <p class="cert-issuer">TECHMAGHI</p>
+        <p class="cert-date">Issued May 2023</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section-wrap" id="contact">
+  <div class="contact-grid">
+    <div>
+      <p class="section-eyebrow">Contact</p>
+      <h2 class="contact-headline">Let's build<br>something <span>together.</span></h2>
+      <p class="contact-sub">Open to DevOps roles, cloud engineering opportunities, and collaborations. Feel free to reach out via email or connect on LinkedIn.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:nehamary22@gmail.com" class="contact-item">
+        <div class="contact-item-icon">@</div>
+        <div>
+          <p class="contact-item-label">Email</p>
+          <p class="contact-item-val">nehamary22@gmail.com</p>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/nehamary-thomas" target="_blank" class="contact-item">
+        <div class="contact-item-icon">in</div>
+        <div>
+          <p class="contact-item-label">LinkedIn</p>
+          <p class="contact-item-val">linkedin.com/in/nehamary-thomas</p>
+        </div>
+      </a>
+      <a href="https://github.com/n5ha" target="_blank" class="contact-item">
+        <div class="contact-item-icon">gh</div>
+        <div>
+          <p class="contact-item-label">GitHub</p>
+          <p class="contact-item-val">github.com/n5ha</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>Neha Mary Thomas — Cloud & DevOps Engineer</span>
+  <span>Kerala, India · 2026</span>
+</footer>
+
+</body>
+</html>
